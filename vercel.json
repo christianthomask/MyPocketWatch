@@ -7,6 +7,10 @@
     {
       "path": "/api/cron/scheduled-notifications",
       "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/cron/contextual-checks",
+      "schedule": "0 17,21,3 * * *"
     }
   ]
 }

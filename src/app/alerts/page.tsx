@@ -14,11 +14,26 @@ const FILTERS: { label: string; value: Severity | 'all' }[] = [
   { label: '\u2705 Info', value: 'info' },
 ];
 
+const DOMAIN_FILTERS: { label: string; value: string }[] = [
+  { label: 'All', value: 'all' },
+  { label: '\uD83D\uDCB0 Financial', value: 'financial' },
+  { label: '\uD83D\uDCD6 Spiritual', value: 'spiritual' },
+  { label: '\uD83D\uDCAA Health', value: 'health' },
+  { label: '\uD83C\uDF19 Sleep', value: 'sleep' },
+  { label: '\uD83C\uDF7D Meals', value: 'meals' },
+  { label: '\uD83D\uDCBB Career', value: 'career' },
+];
+
 export default function AlertsPage() {
   const { alerts, loading, markAsRead, markAllAsRead } = useAlerts(50);
   const [filter, setFilter] = useState<Severity | 'all'>('all');
+  const [domainFilter, setDomainFilter] = useState<string>('all');
 
-  const filtered = filter === 'all' ? alerts : alerts.filter((a) => a.severity === filter);
+  const filtered = alerts.filter((a) => {
+    const matchesSeverity = filter === 'all' || a.severity === filter;
+    const matchesDomain = domainFilter === 'all' || (a as Record<string, unknown>).domain === domainFilter;
+    return matchesSeverity && matchesDomain;
+  });
   const unreadCount = alerts.filter((a) => !a.acknowledged).length;
 
   return (
@@ -37,13 +52,29 @@ export default function AlertsPage() {
         </div>
       </header>
 
-      <div className="px-4 mb-4 flex gap-2 overflow-x-auto pb-1">
+      <div className="px-4 mb-2 flex gap-2 overflow-x-auto pb-1">
         {FILTERS.map((f) => (
           <button
             key={f.value}
             onClick={() => setFilter(f.value)}
             className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
               filter === f.value
+                ? 'bg-accent text-background'
+                : 'bg-surface border border-border text-text-muted'
+            }`}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="px-4 mb-4 flex gap-2 overflow-x-auto pb-1">
+        {DOMAIN_FILTERS.map((f) => (
+          <button
+            key={f.value}
+            onClick={() => setDomainFilter(f.value)}
+            className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
+              domainFilter === f.value
                 ? 'bg-accent text-background'
                 : 'bg-surface border border-border text-text-muted'
             }`}

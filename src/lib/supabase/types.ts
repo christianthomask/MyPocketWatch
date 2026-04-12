@@ -448,6 +448,84 @@ export interface Database {
         };
         Relationships: [];
       };
+      goals: {
+        Row: {
+          id: string;
+          domain: string;
+          title: string;
+          description: string | null;
+          target_value: number | null;
+          current_value: number;
+          unit: string | null;
+          target_date: string | null;
+          status: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          domain: string;
+          title: string;
+          description?: string | null;
+          target_value?: number | null;
+          current_value?: number;
+          unit?: string | null;
+          target_date?: string | null;
+          status?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          domain?: string;
+          title?: string;
+          description?: string | null;
+          target_value?: number | null;
+          current_value?: number;
+          unit?: string | null;
+          target_date?: string | null;
+          status?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      ministry_log: {
+        Row: {
+          id: string;
+          date: string;
+          hours: number;
+          type: string;
+          placements: number;
+          return_visits: number;
+          bible_studies: number;
+          notes: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          date: string;
+          hours: number;
+          type?: string;
+          placements?: number;
+          return_visits?: number;
+          bible_studies?: number;
+          notes?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          date?: string;
+          hours?: number;
+          type?: string;
+          placements?: number;
+          return_visits?: number;
+          bible_studies?: number;
+          notes?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       budget_status: {
@@ -515,3 +593,5 @@ export type DailyCheckin = Tables<'daily_checkins'>;
 export type Streak = Tables<'streaks'>;
 export type NotificationScheduleRow = Tables<'notification_schedule'>;
 export type WeeklyStats = Database['public']['Views']['weekly_stats']['Row'];
+export type Goal = Tables<'goals'>;
+export type MinistryLog = Tables<'ministry_log'>;
