@@ -1,0 +1,36 @@
+{
+  "name": "pocketwatch",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build --webpack",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.88.0",
+    "@serwist/next": "^9.5.7",
+    "@supabase/ssr": "^0.10.2",
+    "@supabase/supabase-js": "^2.103.0",
+    "next": "16.2.3",
+    "plaid": "^41.4.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-plaid-link": "^4.1.1",
+    "serwist": "^9.5.7",
+    "twilio": "^5.13.1",
+    "web-push": "^3.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/web-push": "^3.6.4",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
