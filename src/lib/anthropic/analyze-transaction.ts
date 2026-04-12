@@ -1,6 +1,7 @@
 import { anthropic } from './client';
 import { TRANSACTION_SYSTEM_PROMPT } from './prompts';
 import { saveMerchantMapping } from '@/lib/categories';
+import { dispatchAlert } from '@/lib/alerts/dispatch';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 interface AnalysisResult {
@@ -97,12 +98,16 @@ Analyze this transaction and respond with JSON only.`;
 
     // If alert needed, store it
     if (result.alert_needed) {
-      await supabase.from('alerts').insert({
+      const { data: insertedAlert } = await supabase.from('alerts').insert({
         transaction_id: transaction.id,
         severity: result.severity,
         message: result.message,
         budget_note: result.budget_note,
-      });
+      }).select('id').single();
+
+      if (insertedAlert) {
+        await dispatchAlert(insertedAlert.id, result.severity, result.message);
+      }
     }
 
     // Mark transaction as analyzed
