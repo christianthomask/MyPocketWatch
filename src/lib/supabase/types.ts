@@ -55,6 +55,15 @@ export interface Database {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [
+          {
+            foreignKeyName: '';
+            columns: [];
+            isOneToOne: false;
+            referencedRelation: '';
+            referencedColumns: [];
+          },
+        ];
       };
       budgets: {
         Row: {
@@ -84,6 +93,7 @@ export interface Database {
           notes?: string | null;
           updated_at?: string;
         };
+        Relationships: [];
       };
       merchant_categories: {
         Row: {
@@ -104,6 +114,7 @@ export interface Database {
           category?: string;
           created_at?: string;
         };
+        Relationships: [];
       };
       alerts: {
         Row: {
@@ -139,6 +150,15 @@ export interface Database {
           delivery_method?: string | null;
           created_at?: string;
         };
+        Relationships: [
+          {
+            foreignKeyName: 'alerts_transaction_id_fkey';
+            columns: ['transaction_id'];
+            isOneToOne: false;
+            referencedRelation: 'transactions';
+            referencedColumns: ['id'];
+          },
+        ];
       };
       weekly_reports: {
         Row: {
@@ -177,6 +197,7 @@ export interface Database {
           suggestion?: string | null;
           created_at?: string;
         };
+        Relationships: [];
       };
       push_subscriptions: {
         Row: {
@@ -203,6 +224,7 @@ export interface Database {
           active?: boolean;
           created_at?: string;
         };
+        Relationships: [];
       };
       plaid_connections: {
         Row: {
@@ -232,6 +254,7 @@ export interface Database {
           last_synced_at?: string | null;
           created_at?: string;
         };
+        Relationships: [];
       };
       settings: {
         Row: {
@@ -249,6 +272,7 @@ export interface Database {
           value?: Json;
           updated_at?: string;
         };
+        Relationships: [];
       };
     };
     Views: {
@@ -264,6 +288,7 @@ export interface Database {
           day_of_month: number;
           days_in_month: number;
         };
+        Relationships: [];
       };
     };
     Functions: {
@@ -272,6 +297,8 @@ export interface Database {
         Returns: number;
       };
     };
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
   };
 }
 
