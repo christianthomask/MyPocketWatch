@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { syncTransactions } from '@/lib/plaid/sync';
 import { categorizeByMerchant } from '@/lib/categories';
+import { analyzeTransaction } from '@/lib/anthropic/analyze-transaction';
 
 export async function POST(req: NextRequest) {
   try {
@@ -64,8 +65,18 @@ export async function POST(req: NextRequest) {
         );
 
       // Skip analysis for pending or income transactions
-      // Analysis will be wired in Phase 3
       if (txn.pending || txn.amount < 0) continue;
+
+      // 5. Analyze with Claude
+      const { data: stored } = await supabase
+        .from('transactions')
+        .select('id, merchant_name, amount, date, category')
+        .eq('plaid_transaction_id', txn.transaction_id)
+        .single();
+
+      if (stored) {
+        await analyzeTransaction(stored, supabase);
+      }
     }
 
     return NextResponse.json({ received: true, synced: added.length });
