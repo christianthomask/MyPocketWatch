@@ -126,6 +126,7 @@ export interface Database {
           acknowledged: boolean;
           delivered: boolean;
           delivery_method: string | null;
+          domain: string;
           created_at: string;
         };
         Insert: {
@@ -137,6 +138,7 @@ export interface Database {
           acknowledged?: boolean;
           delivered?: boolean;
           delivery_method?: string | null;
+          domain?: string;
           created_at?: string;
         };
         Update: {
@@ -148,6 +150,7 @@ export interface Database {
           acknowledged?: boolean;
           delivered?: boolean;
           delivery_method?: string | null;
+          domain?: string;
           created_at?: string;
         };
         Relationships: [
@@ -274,6 +277,177 @@ export interface Database {
         };
         Relationships: [];
       };
+      daily_checkins: {
+        Row: {
+          id: string;
+          date: string;
+          bible_reading: boolean;
+          bible_reading_notes: string | null;
+          meeting_attended: boolean;
+          meeting_name: string | null;
+          ministry_hours: number;
+          ministry_notes: string | null;
+          gym_completed: boolean;
+          gym_workout: string | null;
+          gym_duration_minutes: number | null;
+          meals_cooked: number;
+          meals_eaten_out: number;
+          packed_lunch: boolean;
+          water_glasses: number;
+          bedtime: string | null;
+          waketime: string | null;
+          sleep_quality: number | null;
+          phone_away_by_930: boolean;
+          coding_minutes: number;
+          coding_project: string | null;
+          learning_minutes: number;
+          learning_topic: string | null;
+          writing_minutes: number;
+          dnd_prep_minutes: number;
+          mood: number | null;
+          daily_win: string | null;
+          daily_struggle: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          date: string;
+          bible_reading?: boolean;
+          bible_reading_notes?: string | null;
+          meeting_attended?: boolean;
+          meeting_name?: string | null;
+          ministry_hours?: number;
+          ministry_notes?: string | null;
+          gym_completed?: boolean;
+          gym_workout?: string | null;
+          gym_duration_minutes?: number | null;
+          meals_cooked?: number;
+          meals_eaten_out?: number;
+          packed_lunch?: boolean;
+          water_glasses?: number;
+          bedtime?: string | null;
+          waketime?: string | null;
+          sleep_quality?: number | null;
+          phone_away_by_930?: boolean;
+          coding_minutes?: number;
+          coding_project?: string | null;
+          learning_minutes?: number;
+          learning_topic?: string | null;
+          writing_minutes?: number;
+          dnd_prep_minutes?: number;
+          mood?: number | null;
+          daily_win?: string | null;
+          daily_struggle?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          date?: string;
+          bible_reading?: boolean;
+          bible_reading_notes?: string | null;
+          meeting_attended?: boolean;
+          meeting_name?: string | null;
+          ministry_hours?: number;
+          ministry_notes?: string | null;
+          gym_completed?: boolean;
+          gym_workout?: string | null;
+          gym_duration_minutes?: number | null;
+          meals_cooked?: number;
+          meals_eaten_out?: number;
+          packed_lunch?: boolean;
+          water_glasses?: number;
+          bedtime?: string | null;
+          waketime?: string | null;
+          sleep_quality?: number | null;
+          phone_away_by_930?: boolean;
+          coding_minutes?: number;
+          coding_project?: string | null;
+          learning_minutes?: number;
+          learning_topic?: string | null;
+          writing_minutes?: number;
+          dnd_prep_minutes?: number;
+          mood?: number | null;
+          daily_win?: string | null;
+          daily_struggle?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      streaks: {
+        Row: {
+          id: string;
+          habit: string;
+          current_streak: number;
+          longest_streak: number;
+          last_completed: string | null;
+          total_completions: number;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          habit: string;
+          current_streak?: number;
+          longest_streak?: number;
+          last_completed?: string | null;
+          total_completions?: number;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          habit?: string;
+          current_streak?: number;
+          longest_streak?: number;
+          last_completed?: string | null;
+          total_completions?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      notification_schedule: {
+        Row: {
+          id: string;
+          name: string;
+          domain: string;
+          cron_hour: number;
+          cron_minute: number;
+          days_of_week: number[];
+          messages: string[];
+          message_index: number;
+          active: boolean;
+          last_sent_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          domain: string;
+          cron_hour: number;
+          cron_minute: number;
+          days_of_week?: number[];
+          messages: string[];
+          message_index?: number;
+          active?: boolean;
+          last_sent_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          domain?: string;
+          cron_hour?: number;
+          cron_minute?: number;
+          days_of_week?: number[];
+          messages?: string[];
+          message_index?: number;
+          active?: boolean;
+          last_sent_at?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       budget_status: {
@@ -287,6 +461,23 @@ export interface Database {
           pct_used: number;
           day_of_month: number;
           days_in_month: number;
+        };
+        Relationships: [];
+      };
+      weekly_stats: {
+        Row: {
+          week_start: string;
+          days_checked_in: number;
+          bible_days: number;
+          gym_days: number;
+          packed_lunch_days: number;
+          phone_away_days: number;
+          total_meals_cooked: number;
+          total_meals_out: number;
+          total_coding_minutes: number;
+          total_writing_minutes: number;
+          total_ministry_hours: number;
+          avg_mood: number;
         };
         Relationships: [];
       };
@@ -320,3 +511,7 @@ export type PushSubscription = Tables<'push_subscriptions'>;
 export type PlaidConnection = Tables<'plaid_connections'>;
 export type Settings = Tables<'settings'>;
 export type BudgetStatus = Database['public']['Views']['budget_status']['Row'];
+export type DailyCheckin = Tables<'daily_checkins'>;
+export type Streak = Tables<'streaks'>;
+export type NotificationScheduleRow = Tables<'notification_schedule'>;
+export type WeeklyStats = Database['public']['Views']['weekly_stats']['Row'];

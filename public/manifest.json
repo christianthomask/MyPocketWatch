@@ -1,7 +1,7 @@
 {
-  "name": "PocketWatch",
-  "short_name": "PocketWatch",
-  "description": "Your financial accountability buddy",
+  "name": "PocketWatch+",
+  "short_name": "PocketWatch+",
+  "description": "Your life accountability buddy",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#08090d",

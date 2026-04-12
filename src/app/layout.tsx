@@ -15,13 +15,13 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "PocketWatch",
-  description: "Your financial accountability buddy",
+  title: "PocketWatch+",
+  description: "Your life accountability buddy",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "PocketWatch",
+    title: "PocketWatch+",
   },
 };
 
