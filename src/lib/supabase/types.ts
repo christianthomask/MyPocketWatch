@@ -526,6 +526,48 @@ export interface Database {
         };
         Relationships: [];
       };
+      life_reviews: {
+        Row: {
+          id: string;
+          week_start: string;
+          week_end: string;
+          stats: Json;
+          summary: string;
+          domain_scores: Json | null;
+          wins: string[] | null;
+          struggles: string[] | null;
+          suggestion: string | null;
+          overall_grade: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          week_start: string;
+          week_end: string;
+          stats: Json;
+          summary: string;
+          domain_scores?: Json | null;
+          wins?: string[] | null;
+          struggles?: string[] | null;
+          suggestion?: string | null;
+          overall_grade?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          week_start?: string;
+          week_end?: string;
+          stats?: Json;
+          summary?: string;
+          domain_scores?: Json | null;
+          wins?: string[] | null;
+          struggles?: string[] | null;
+          suggestion?: string | null;
+          overall_grade?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       budget_status: {
@@ -595,3 +637,4 @@ export type NotificationScheduleRow = Tables<'notification_schedule'>;
 export type WeeklyStats = Database['public']['Views']['weekly_stats']['Row'];
 export type Goal = Tables<'goals'>;
 export type MinistryLog = Tables<'ministry_log'>;
+export type LifeReview = Tables<'life_reviews'>;

@@ -11,6 +11,10 @@
     {
       "path": "/api/cron/contextual-checks",
       "schedule": "0 17,21,3 * * *"
+    },
+    {
+      "path": "/api/cron/weekly-life-review",
+      "schedule": "30 21 * * 0"
     }
   ]
 }
