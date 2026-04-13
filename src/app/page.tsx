@@ -8,6 +8,7 @@ import { useGoals } from '@/hooks/useGoals';
 import DomainGrid from '@/components/DomainGrid';
 import AlertCard from '@/components/AlertCard';
 import GoalList from '@/components/GoalList';
+import ExportButton from '@/components/ExportButton';
 import BottomNav from '@/components/BottomNav';
 import { DOMAIN_CONFIG, MONTHLY_INCOME } from '@/lib/constants';
 import Link from 'next/link';
@@ -152,6 +153,9 @@ export default function DashboardPage() {
             </div>
           </div>
         )}
+
+        {/* Export for Claude */}
+        <ExportButton />
       </main>
 
       <BottomNav />
