@@ -568,6 +568,207 @@ export interface Database {
         };
         Relationships: [];
       };
+      schedule_blocks: {
+        Row: {
+          id: string;
+          day_type: string;
+          time: string;
+          duration_minutes: number | null;
+          label: string;
+          detail: string | null;
+          domain: string | null;
+          color: string | null;
+          sort_order: number;
+          active: boolean;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          day_type: string;
+          time: string;
+          duration_minutes?: number | null;
+          label: string;
+          detail?: string | null;
+          domain?: string | null;
+          color?: string | null;
+          sort_order: number;
+          active?: boolean;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          day_type?: string;
+          time?: string;
+          duration_minutes?: number | null;
+          label?: string;
+          detail?: string | null;
+          domain?: string | null;
+          color?: string | null;
+          sort_order?: number;
+          active?: boolean;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      meal_plans: {
+        Row: {
+          id: string;
+          week: string;
+          day_of_week: number;
+          meal_type: string;
+          description: string;
+          calories: number | null;
+          protein_g: number | null;
+          is_prepped: boolean;
+          sort_order: number;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          week: string;
+          day_of_week: number;
+          meal_type: string;
+          description: string;
+          calories?: number | null;
+          protein_g?: number | null;
+          is_prepped?: boolean;
+          sort_order: number;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          week?: string;
+          day_of_week?: number;
+          meal_type?: string;
+          description?: string;
+          calories?: number | null;
+          protein_g?: number | null;
+          is_prepped?: boolean;
+          sort_order?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      grocery_items: {
+        Row: {
+          id: string;
+          category: string;
+          name: string;
+          estimated_price: number | null;
+          store: string | null;
+          note: string | null;
+          is_weekly: boolean;
+          sort_order: number;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          category: string;
+          name: string;
+          estimated_price?: number | null;
+          store?: string | null;
+          note?: string | null;
+          is_weekly?: boolean;
+          sort_order: number;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          category?: string;
+          name?: string;
+          estimated_price?: number | null;
+          store?: string | null;
+          note?: string | null;
+          is_weekly?: boolean;
+          sort_order?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      workout_days: {
+        Row: {
+          id: string;
+          day_name: string;
+          day_label: string;
+          color: string | null;
+          sort_order: number;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          day_name: string;
+          day_label: string;
+          color?: string | null;
+          sort_order: number;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          day_name?: string;
+          day_label?: string;
+          color?: string | null;
+          sort_order?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      exercises: {
+        Row: {
+          id: string;
+          workout_day_id: string | null;
+          name: string;
+          sets_reps: string;
+          note: string | null;
+          is_back_friendly: boolean;
+          sort_order: number;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          workout_day_id?: string | null;
+          name: string;
+          sets_reps: string;
+          note?: string | null;
+          is_back_friendly?: boolean;
+          sort_order: number;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          workout_day_id?: string | null;
+          name?: string;
+          sets_reps?: string;
+          note?: string | null;
+          is_back_friendly?: boolean;
+          sort_order?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      daily_protocols: {
+        Row: {
+          id: string;
+          protocol_name: string;
+          label: string;
+          exercises: Json;
+          sort_order: number;
+        };
+        Insert: {
+          id?: string;
+          protocol_name: string;
+          label: string;
+          exercises: Json;
+          sort_order: number;
+        };
+        Update: {
+          id?: string;
+          protocol_name?: string;
+          label?: string;
+          exercises?: Json;
+          sort_order?: number;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       budget_status: {
@@ -638,3 +839,9 @@ export type WeeklyStats = Database['public']['Views']['weekly_stats']['Row'];
 export type Goal = Tables<'goals'>;
 export type MinistryLog = Tables<'ministry_log'>;
 export type LifeReview = Tables<'life_reviews'>;
+export type ScheduleBlock = Tables<'schedule_blocks'>;
+export type MealPlan = Tables<'meal_plans'>;
+export type GroceryItem = Tables<'grocery_items'>;
+export type WorkoutDay = Tables<'workout_days'>;
+export type Exercise = Tables<'exercises'>;
+export type DailyProtocol = Tables<'daily_protocols'>;
